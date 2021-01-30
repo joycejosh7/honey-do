@@ -19,22 +19,27 @@ class ChoresController < ApplicationController
             redirect_to chores_path
         else  
             # what to do if it is invalid
-            flash[:error] = @chore.errors.full_messages
+            flash.now[:error] = @chore.errors.full_messages
             render :new
         end
     end
 
-    def edit
-            
+    def edit       
     end
 
     def update
         if @chore.update(chore_params)
             redirect_to chore_path(@chore)
         else  
-            flash[:error] = @chore.errors.full_messages
+            flash.now[:error] = @chore.errors.full_messages
             render :edit
         end
+    end
+
+    def destroy
+        @chore.destroy
+        flash[:notice] = "#{@chore.title} was deleted!"
+        redirect_to chores_path
     end
 
 
