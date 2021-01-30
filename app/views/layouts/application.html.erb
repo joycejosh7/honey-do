@@ -18,6 +18,10 @@
         <li><%= link_to("Add Chore", new_chore_path) %></li>
       </ul>
     </nav>
+    <% if flash[:error] %>
+      <% flash[:error].each do |error| %>
+        <p><%= error %></p>
+    <% end %>
     <%= yield %>
   </body>
 </html>
