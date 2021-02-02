@@ -1,5 +1,5 @@
 class ChoresController < ApplicationController
-    before_action :find_chore, only: [:show, :edit, :destroy, :update]
+    before_action :find_chore, only: [:show, :edit, :update, :destroy]
 
     def index
         @chores = Chore.all
@@ -44,14 +44,20 @@ class ChoresController < ApplicationController
 
 
 
-private
-
-    def chore_params
-        params.require(:chore).permit(:title, :description)
-    end
+    private
 
     def find_chore
         @chore = Chore.find_by_id(params[:id])
     end
+
+    def chore_params
+        params.require(:chore).permit(
+            :title, 
+            :room_id, 
+            :description, 
+            room_attributes: [:name]
+            )
+    end
+
 
 end
