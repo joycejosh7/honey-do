@@ -1,0 +1,25 @@
+<h1>Create Room</h1>
+
+<%= form_for @room do |f| %>
+    <div>
+        <%= f.label :name %>
+        <%= f.text_field :name %>
+    </div>
+
+    <%= f.fields_for :chores, @room.chores do |c| %>
+        <br>
+        <div>
+            <%= c.label :title %>
+            <%= c.text_field :title %>
+        </div>
+        <br>
+        <div>
+            <%= c.label :description %>
+            <%= c.text_area :description %>
+        </div>
+        <br>
+    <% end %>
+
+    <%= f.submit "Create Room" %>
+<% end %>
+
