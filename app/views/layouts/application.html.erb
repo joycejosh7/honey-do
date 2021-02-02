@@ -12,15 +12,9 @@
 
   <body>
 
-    <%= render 'layouts/nav'%>
+    <%= render 'layouts/nav' %>
+    <%= render 'layouts/errors' %>
 
-    <% if flash[:error] %>
-      <% flash[:error].each do |error| %>
-        <p><%= error %></p>
-      <% end %>
-    <% end %>
-
-    <%= content_tag("p", flash[:notice]) if flash[:notice] %>
     <%= yield %>
   </body>
 </html>
