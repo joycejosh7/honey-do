@@ -11,13 +11,8 @@
   </head>
 
   <body>
-    <nav>
-      <ul>
-        <li><%= link_to("Home", root_path) %></li>
-        <li><%= link_to("Chores", chores_path) %></li>
-        <li><%= link_to("Add Chore", new_chore_path) %></li>
-      </ul>
-    </nav>
+
+    <%= render 'layouts/nav'%>
 
     <% if flash[:error] %>
       <% flash[:error].each do |error| %>
