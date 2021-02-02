@@ -1,0 +1,30 @@
+
+
+<%= form_for chore do |f| %>
+    <div>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <br>
+    <div>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+    <br>
+
+    <h3>Select Room</h3>
+    <div>
+        <%= f.collection_select :room_id, Room.all, :id, :name, include_blank: "Select Room" %>
+    </div>
+
+    <h3>Create Room</h3>
+    <%= f.fields_for :room, chore.build_room do |rb|%>
+        <div>
+            <%= rb.label :name %>
+            <%= rb.text_field :name%>
+        </div>
+    <% end %>
+    <br>
+
+    <%= f.submit button_name %>
+<% end %>
