@@ -1,5 +1,9 @@
 <h1>Chore List<%= " for #{@room.name}" if @room %></h1>
 
+<% if @room %>
+    <p><%= link_to "Add Chore For #{@room.name}", new_room_chore_path(@room) %></p>
+<% end %>
+
 <ul>
     <%= render @chores %>
 </ul>
