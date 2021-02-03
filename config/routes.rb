@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
-  resources :rooms
   root to: 'static#home'
   
   resources :chores
+  resources :rooms do
+    resources :chores, only: [:new, :create, :index]
+  end
 
 
 

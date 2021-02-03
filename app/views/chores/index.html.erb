@@ -1,4 +1,4 @@
-<h1>Chore List</h1>
+<h1>Chore List<%= " for #{@room.name}" if @room %></h1>
 
 <ul>
     <%= render @chores %>

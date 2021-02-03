@@ -1,0 +1,18 @@
+<h1>Nested Route for New</h1>
+
+<%= form_for [@room, @chore] do |f| %>
+    <div>
+        <%= f.label :title %>
+        <%= f.text_field :title %>
+    </div>
+    <br>
+    <div>
+        <%= f.label :description %>
+        <%= f.text_area :description %>
+    </div>
+    <br>
+
+    <%= f.hidden_field :room_id %>
+
+    <%= f.submit "Add Chore" %>
+<% end %>

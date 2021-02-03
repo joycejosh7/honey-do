@@ -1,5 +1,13 @@
 class RoomsController < ApplicationController
 
+    def index
+        @rooms = Room.all
+    end
+
+    def show
+        @room = Room.find_by_id(params[:id])
+    end
+
     def new
         @room = Room.new
         @room.chores.build
@@ -20,7 +28,7 @@ class RoomsController < ApplicationController
         def room_params
             params.require(:room).permit(
             :name, 
-            :chores_attributes: [:title, :description]
+            chores_attributes: [:title, :description]
             )
         end
 

@@ -1,15 +1,25 @@
 class ChoresController < ApplicationController
+    before_action :find_room, only: [:index, :new, :create]
     before_action :find_chore, only: [:show, :edit, :update, :destroy]
 
     def index
-        @chores = Chore.all
+        if @room
+            @chores = @room.chores
+        else  
+            @chores = Chore.all
+        end
     end
 
     def show
     end
     
     def new
-        @chore = Chore.new
+        if @room
+            @chore = @room.chores.build
+            render :new_room_chore    
+        else
+            @chore = Chore.new
+        end
     end
 
     def create
@@ -18,9 +28,14 @@ class ChoresController < ApplicationController
             # what to do if it is valid
             redirect_to chores_path
         else  
-            # what to do if it is invalid
+            # what to do if it is not valid
             flash.now[:error] = @chore.errors.full_messages
-            render :new
+            
+            if @room
+                render :new_room_chore
+            else  
+                render :new
+            end
         end
     end
 
@@ -48,6 +63,12 @@ class ChoresController < ApplicationController
 
     def find_chore
         @chore = Chore.find_by_id(params[:id])
+    end
+
+    def find_room
+        if params[:room_id]
+            @room = Room.find_by_id(params[:room_id])
+        end
     end
 
     def chore_params
